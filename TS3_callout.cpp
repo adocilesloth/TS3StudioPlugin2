@@ -14,7 +14,6 @@ TS3Callout *co;
 bool get_TS3_enabled()
 {
 	return co->ui->enableCheck->isChecked();
-	//return true;
 }
 
 char* get_address()
@@ -23,7 +22,6 @@ char* get_address()
 	char *chr = new char[str.length() + 1];
 	std::strcpy(chr, str.c_str());
 	return chr;
-	//return "127.0.0.1";
 }
 
 char* get_API_key()
@@ -32,7 +30,6 @@ char* get_API_key()
 	char *chr = new char[str.length() + 1];
 	std::strcpy(chr, str.c_str());
 	return chr;
-	//return "26HD-9MV0-BNTX-IX0D-0M7F-GMMJ";
 }
 
 char* get_cluid()
@@ -41,7 +38,6 @@ char* get_cluid()
 	char *chr = new char[str.length() + 1];
 	std::strcpy(chr, str.c_str());
 	return chr;
-	//return "9KzgOxf/cQ7JiOgeGiMfnw7BWYM=";
 }
 
 char* get_fix()
@@ -50,31 +46,26 @@ char* get_fix()
 	char *chr = new char[str.length() + 1];
 	std::strcpy(chr, str.c_str());
 	return chr;
-	//return "*R*";
 }
 
 bool get_fix_as_prefix()
 {
 	return co->ui->prefixRadio->isChecked();
-	//return true;
 }
 
 bool get_do_mute()
 {
 	return co->ui->muteCheck->isChecked();
-	//return false;
 }
 
 bool get_do_deaf()
 {
 	return co->ui->deafCheck->isChecked();
-	//return false;
 }
 
 bool get_change_every_server()
 {
 	return co->ui->serversCheck->isChecked();
-	//return false;
 }
 
 static void save_TS3_callout(obs_data_t *save_data, bool saving, void *)
@@ -142,10 +133,8 @@ TS3Callout::TS3Callout(QWidget *parent)
 {
 	ui->setupUi(this);
 
-	QObject::connect(ui->apikeyButton, SIGNAL(clicked()),
-		this, SLOT(toggle_APIKey()));
-	QObject::connect(ui->cluidButton, SIGNAL(clicked()),
-		this, SLOT(toggle_cluid()));
+	QObject::connect(ui->apikeyButton, SIGNAL(clicked()), this, SLOT(toggle_APIKey()));
+	QObject::connect(ui->cluidButton, SIGNAL(clicked()), this, SLOT(toggle_cluid()));
 	QObject::connect(ui->closeButton->button(QDialogButtonBox::Close),
 		SIGNAL(clicked()), this, SLOT(hide()));
 
@@ -185,14 +174,10 @@ void TS3Callout::ShowHideDialog()
 	if(!isVisible())
 	{
 		setVisible(true);
-		pause_overlay(true);
-		//QTimer::singleShot(250, this, SLOT(show()));
 	}
 	else
 	{
 		setVisible(false);
-		pause_overlay(false);
-		//QTimer::singleShot(250, this, SLOT(hide()));
 	}
 }
 

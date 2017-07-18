@@ -123,10 +123,11 @@ static void ts3_plugin_video_tick(void *data, float seconds)
 		talk_symbol = obs_data_get_string(overlay->textSource, "talk_symbol");
 		symbol_right_of_speaker = obs_data_get_bool(overlay->textSource, "right_of_name");
 		
-		const char* name_list = set_overlay(number_of_names, hide_self,
+		char* name_list = set_overlay(number_of_names, hide_self,
 			only_show_speaker, hide_name_after, quiet_symbol,
 			talk_symbol, symbol_right_of_speaker);
 		
+		//blog(LOG_WARNING, name_list);
 		obs_data_set_string(overlay->textSource->context.settings, "text", name_list);
 		frame_counter = 0;
 	}

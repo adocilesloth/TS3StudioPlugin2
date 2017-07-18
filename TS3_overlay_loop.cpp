@@ -68,16 +68,16 @@ void overlay_loop()
 			psleep(200);
 		}
 		//clear vectors
-		names.clear();
 		name_list.clear();
-		talking.clear();
 		talking_list.clear();
 		schandlerid.clear();
 
 		if(get_TS3_enabled())
 		{
+			//blog(LOG_WARNING, "connect");
 			if(connect(sock, discon) == 0)
 			{
+				//blog(LOG_WARNING, "authorise");
 				if(authorise(sock, discon) == 0)
 				{
 					if(discon)
@@ -85,17 +85,22 @@ void overlay_loop()
 						discon = false;
 					}
 					//Get Channel client list and talking state
+					//blog(LOG_WARNING, "get_cid");
 					if(get_cid(sock, cid) == 0)
 					{
+						//blog(LOG_WARNING, "get_channelclientlist");
 						get_channelclientlist(sock, cid, name_list, talking_list);
-						names = name_list;
-						talking = talking_list;
+						//names = name_list;
+						//talking = talking_list;
 					}
 					//get own name
+					//blog(LOG_WARNING, "get_schandlerid");
 					if(get_schandlerid(sock, schandlerid) == 0)
 					{
+						//blog(LOG_WARNING, "notifyregister");
 						if(notifyregister(sock, schandlerid[0]) == 0)
 						{
+							//blog(LOG_WARNING, "clientname_from_uid");
 							clientname_from_uid(sock, clientname);
 							own_name = clientname;
 						}
@@ -104,6 +109,8 @@ void overlay_loop()
 				sock.closeConnection();
 			}
 		}
+		names = name_list;
+		talking = talking_list;
 		psleep(200);
 	}
 	return;

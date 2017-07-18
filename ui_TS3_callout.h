@@ -46,7 +46,6 @@ public:
 	QLabel *serversLabel;
 	QCheckBox *serversCheck;
 
-	//QDialogButtonBox *okButton;
 	QDialogButtonBox *closeButton;
 
 	void setupUi(QDialog *TS3Callout)
@@ -163,12 +162,6 @@ public:
 		serversCheck->setObjectName(QStringLiteral("serversCheck"));
 		serversCheck->setChecked(false);
 		ts3Layout->addWidget(serversCheck, 8, 2, 1, 1);
-
-
-		/*okButton = new QDialogButtonBox(TS3Callout);
-		okButton->setObjectName(QStringLiteral("buttonBox"));
-		okButton->setStandardButtons(QDialogButtonBox::Ok);
-		ts3Layout->addWidget(okButton, 8, 4, 1, 1);*/
 
 		closeButton = new QDialogButtonBox(TS3Callout);
 		closeButton->setObjectName(QStringLiteral("buttonBox"));

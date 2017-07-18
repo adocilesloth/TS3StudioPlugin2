@@ -7,18 +7,21 @@ A Docile Sloth 2017 (adocilesloth@gmail.com)
 #include <vector>
 #include <sstream>
 
-/*const char* set_overlay()
+#include <obs-module.h>
+
+/*char* set_overlay()
 {
 	return "A Docile Sloth";
 }*/
 
-const char* set_overlay(int number_of_names, bool hide_self, bool only_show_speaker,
+char* set_overlay(int number_of_names, bool hide_self, bool only_show_speaker,
 	int hide_name_after, char* quiet_symbol, char* talk_symbol,
 	bool symbol_right_of_speaker)
 {
 	std::vector<std::wstring> names = get_names();
 	if(names.size() == 0)
 	{
+		blog(LOG_WARNING, "No names");
 		return " ";
 	}
 	
@@ -101,7 +104,7 @@ const char* set_overlay(int number_of_names, bool hide_self, bool only_show_spea
 		}//end for(int i...
 	}//end Only Show talkers
 
-	if(overlay.str() == L" ")
+	if(overlay.str() == L"")
 	{
 		overlay_string = " ";
 	}
@@ -109,6 +112,8 @@ const char* set_overlay(int number_of_names, bool hide_self, bool only_show_spea
 	{
 		overlay_string = ws2s(overlay.str());
 	}
-
-	return overlay_string.c_str();
+	char *chr = new char[overlay_string.length() + 1];
+	std::strcpy(chr, overlay_string.c_str());
+	//blog(LOG_WARNING, chr);
+	return chr;
 }

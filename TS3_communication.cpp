@@ -201,7 +201,7 @@ int get_channelclientlist(slothSock &sock, std::string cid, std::vector<std::wst
 	std::wstring wlist = s2ws(list);
 	//blog(LOG_WARNING, list.c_str());//------------------------------------
 
-	size_t startpos;
+	size_t startpos = 1;
 	size_t endpos;
 	std::wstring wtempstr;
 
@@ -218,6 +218,7 @@ int get_channelclientlist(slothSock &sock, std::string cid, std::vector<std::wst
 		endpos = wlist.find(widentend);
 		if(endpos < 0)
 		{
+
 			break;
 		}
 
@@ -242,7 +243,7 @@ int get_channelclientlist(slothSock &sock, std::string cid, std::vector<std::wst
 		}
 		wlist = wlist.substr(startpos + 25);
 	}
-	return 3;
+	return 0;
 }
 
 int set_schandlerid(slothSock &sock, std::string schandlerid)

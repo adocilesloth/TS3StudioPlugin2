@@ -16,6 +16,7 @@ bool update_ts3_name(bool add_fix)
 	{
 		return true;
 	}
+	ReplaceAll(fix, " ", "\\s");
 
 	slothSock sock;
 	bool discon;
@@ -55,34 +56,57 @@ bool update_ts3_name(bool add_fix)
 	}
 	for(int i = 0; i < num_server; i++)
 	{
+		blog(LOG_WARNING, "set_schandlerid");
 		if(set_schandlerid(sock, schandlerid[i]) == 0)
 		{
+			blog(LOG_WARNING, "notifyregister");
 			if(notifyregister(sock, schandlerid[i]) == 0)
 			{
+				blog(LOG_WARNING, "clientname_from_uid");
 				if(clientname_from_uid(sock, clientname) == 0)
 				{
 					if(add_fix)
 					{
+						blog(LOG_WARNING, "->add_fix");
 						if(fix_as_prefix)
 						{
-							if(clientname.substr(0, wfix.size()) != wfix)
+							if(clientname.size() <= wfix.size())
 							{
 								newname = wfix + clientname;
 							}
 							else
 							{
-								newname = clientname;
+								if(clientname.substr(0, wfix.size()) != wfix)
+								{
+									newname = wfix + clientname;
+								}
+								else
+								{
+									newname = clientname;
+								}
 							}
 						}
 						else
 						{
-							if(clientname.substr(clientname.size() - wfix.size(), wfix.size()) != wfix)
+							blog(LOG_WARNING, "->suffix");
+							blog(LOG_WARNING, "if(client_name.size <");
+							if(clientname.size() <= wfix.size())
 							{
 								newname = clientname + wfix;
 							}
 							else
 							{
-								newname = clientname;
+								blog(LOG_WARNING, "if(client_name.size -");
+								if(clientname.substr(clientname.size() - wfix.size(), wfix.size()) != wfix)
+								{
+									blog(LOG_WARNING, "->true");
+									newname = clientname + wfix;
+								}
+								else
+								{
+									blog(LOG_WARNING, "->false");
+									newname = clientname;
+								}
 							}
 						}
 					}
@@ -90,24 +114,38 @@ bool update_ts3_name(bool add_fix)
 					{
 						if(fix_as_prefix)
 						{
-							if(clientname.substr(0, wfix.size()) == wfix)
+							if(clientname.size() <= wfix.size())
 							{
-								newname = clientname.substr(wfix.size(), clientname.size() - wfix.size());
+								newname = clientname;
 							}
 							else
 							{
-								newname = clientname;
+								if(clientname.substr(0, wfix.size()) == wfix)
+								{
+									newname = clientname.substr(wfix.size(), clientname.size() - wfix.size());
+								}
+								else
+								{
+									newname = clientname;
+								}
 							}
 						}
 						else
 						{
-							if(clientname.substr(clientname.size() - wfix.size(), wfix.size()) == wfix)
+							if(clientname.size() <= wfix.size())
 							{
-								newname = clientname.substr(0, clientname.size() - wfix.size());
+								newname = clientname;
 							}
 							else
 							{
-								newname = clientname;
+								if(clientname.substr(clientname.size() - wfix.size(), wfix.size()) == wfix)
+								{
+									newname = clientname.substr(0, clientname.size() - wfix.size());
+								}
+								else
+								{
+									newname = clientname;
+								}
 							}
 						}
 					}
