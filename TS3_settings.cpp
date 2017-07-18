@@ -21,7 +21,7 @@ char* set_overlay(int number_of_names, bool hide_self, bool only_show_speaker,
 	std::vector<std::wstring> names = get_names();
 	if(names.size() == 0)
 	{
-		blog(LOG_WARNING, "No names");
+		//blog(LOG_WARNING, "No names");
 		return " ";
 	}
 	

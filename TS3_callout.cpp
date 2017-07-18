@@ -142,7 +142,6 @@ TS3Callout::TS3Callout(QWidget *parent)
 
 void TS3Callout::toggle_APIKey()
 {
-	blog(LOG_WARNING, "toggle_APIKey()");
 	if(co->ui->apikeyLineEdit->echoMode() == QLineEdit::Password)
 	{
 		co->ui->apikeyLineEdit->setEchoMode(QLineEdit::Normal);

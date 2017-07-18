@@ -18,10 +18,11 @@ public:
 
 	void closeEvent(QCloseEvent *event) override;
 
-	public slots:
+public slots:
+	void toggle_APIKey();
+	void toggle_cluid();
 	void ShowHideDialog();
 
 private:
-	void toggle_APIKey();
-	void toggle_cluid();
+	//Nothing here
 };
