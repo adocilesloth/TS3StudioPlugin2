@@ -4,7 +4,8 @@ A Docile Sloth 2017 (adocilesloth@gmail.com)
 #pragma once
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+//#include <QtWidgets/QAction>
+#include <QtWidgets/qaction.h>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>

@@ -48,10 +48,10 @@
     <ClCompile Include="TS3_callout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="moc_TS3_callout.cpp">
+    <ClCompile Include="TS3_settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TS3_settings.cpp">
+    <ClCompile Include="moc_TS3_callout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

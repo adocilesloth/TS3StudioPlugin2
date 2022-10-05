@@ -89,7 +89,7 @@ int authorise(slothSock& sock, bool &discon)
 int get_schandlerid(slothSock &sock, std::vector<std::string> &schandlerid)
 {
 	int iResult;
-	char* schandlerlist = "serverconnectionhandlerlist\n";
+	const char* schandlerlist = "serverconnectionhandlerlist\n";
 	//blog(LOG_WARNING, "SCHANDLERID");
 	//blog(LOG_WARNING, schandlerlist);//-----------------------------------
 	iResult = sock.sendAll(schandlerlist, (int)strlen(schandlerlist), 0);	//send serverconnectionhandlerlist
@@ -131,7 +131,7 @@ int get_schandlerid(slothSock &sock, std::vector<std::string> &schandlerid)
 int get_cid(slothSock &sock, std::string &cid)
 {
 	int iResult;
-	char* whoami = "whoami\n";
+	const char* whoami = "whoami\n";
 	//blog(LOG_WARNING, "WHOAMI");
 	//blog(LOG_WARNING, whoami);//------------------------------------------
 	iResult = sock.sendAll(whoami, (int)strlen(whoami), 0);	//send whoami

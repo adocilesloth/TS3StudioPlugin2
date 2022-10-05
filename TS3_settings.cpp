@@ -18,15 +18,19 @@ char* set_overlay(int number_of_names, bool hide_self, bool only_show_speaker,
 	int hide_name_after, char* quiet_symbol, char* talk_symbol,
 	bool symbol_right_of_speaker)
 {
+	std::string overlay_string;
 	std::vector<std::wstring> names = get_names();
 	if(names.size() == 0)
 	{
 		//blog(LOG_WARNING, "No names");
-		return " ";
+		overlay_string = " ";
+		char* chr = new char[overlay_string.length() + 1];
+		std::strcpy(chr, overlay_string.c_str());
+		return chr;
 	}
 	
 	std::wstringstream overlay;
-	std::string overlay_string;
+	//std::string overlay_string;
 
 	std::wstring wide_quiet_symbol = s2ws(quiet_symbol);
 	std::wstring wide_talk_symbol = s2ws(talk_symbol);
